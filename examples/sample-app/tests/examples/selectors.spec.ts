@@ -7,17 +7,17 @@ import { DevExtremeSelectors } from '@playwright-devextreme/helpers';
 
 test.describe('DevExtreme Selectors', () => {
   test.beforeEach(async ({ page }) => {
-    // Navigate to your application
-    // await page.goto('http://localhost:4200');
+    // Navigate to sample application
+    await page.goto('http://localhost:4200');
   });
 
-  test.skip('should use predefined button selector', async ({ page }) => {
+  test('should use predefined button selector', async ({ page }) => {
     // Use predefined selectors for common components
     const button = page.locator(DevExtremeSelectors.button).first();
     await button.waitFor({ state: 'visible' });
   });
 
-  test.skip('should find disabled buttons', async ({ page }) => {
+  test('should find disabled buttons', async ({ page }) => {
     // Check for disabled state
     const disabledButton = page.locator(
       `${DevExtremeSelectors.button}${DevExtremeSelectors.disabled}`
@@ -27,12 +27,12 @@ test.describe('DevExtreme Selectors', () => {
     expect(count).toBeGreaterThanOrEqual(0);
   });
 
-  test.skip('should use data grid selector', async ({ page }) => {
+  test('should use data grid selector', async ({ page }) => {
     const grid = page.locator(DevExtremeSelectors.dataGrid).first();
     await grid.waitFor({ state: 'visible' });
   });
 
-  test.skip('should combine selectors for complex queries', async ({ page }) => {
+  test('should combine selectors for complex queries', async ({ page }) => {
     // Find visible, enabled buttons
     const enabledButton = page.locator(
       `${DevExtremeSelectors.button}:not(${DevExtremeSelectors.disabled}):not(${DevExtremeSelectors.invisible})`
@@ -41,7 +41,7 @@ test.describe('DevExtreme Selectors', () => {
     expect(count).toBeGreaterThanOrEqual(0);
   });
 
-  test.skip('should use validation selectors', async ({ page }) => {
+  test('should use validation selectors', async ({ page }) => {
     // Find validation group
     const validationGroup = page.locator(DevExtremeSelectors.validationGroup);
     
@@ -51,12 +51,13 @@ test.describe('DevExtreme Selectors', () => {
     expect(messageCount).toBeGreaterThanOrEqual(0);
   });
 
-  test.skip('should use loading indicator selectors', async ({ page }) => {
+  test('should use loading indicator selectors', async ({ page }) => {
     // Check for loading state
     const loadingIndicator = page.locator(DevExtremeSelectors.loadIndicator);
     const isVisible = await loadingIndicator.isVisible().catch(() => false);
     expect(typeof isVisible).toBe('boolean');
   });
 });
+
 
 

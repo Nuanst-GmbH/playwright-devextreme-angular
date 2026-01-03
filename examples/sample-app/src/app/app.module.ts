@@ -7,7 +7,7 @@ import { DxTextBoxModule } from 'devextreme-angular/ui/text-box';
 import { DxSelectBoxModule } from 'devextreme-angular/ui/select-box';
 import { DxDataGridModule } from 'devextreme-angular/ui/data-grid';
 import { DxPopupModule } from 'devextreme-angular/ui/popup';
-import { DxValidatorModule, DxValidationGroupModule } from 'devextreme-angular/ui/validator';
+import { DxValidatorModule } from 'devextreme-angular/ui/validator';
 
 import { AppComponent } from './app.component';
 
@@ -24,8 +24,7 @@ import { AppComponent } from './app.component';
     DxSelectBoxModule,
     DxDataGridModule,
     DxPopupModule,
-    DxValidatorModule,
-    DxValidationGroupModule
+    DxValidatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

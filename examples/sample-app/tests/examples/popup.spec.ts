@@ -11,11 +11,11 @@ import {
 
 test.describe('DevExtreme Popup Component', () => {
   test.beforeEach(async ({ page }) => {
-    // Navigate to your application
-    // await page.goto('http://localhost:4200');
+    // Navigate to sample application
+    await page.goto('http://localhost:4200');
   });
 
-  test.skip('should wait for popup to appear and interact with it', async ({ page }) => {
+  test('should wait for popup to appear and interact with it', async ({ page }) => {
     // Trigger popup (e.g., by clicking a button)
     const triggerButton = '#open-popup-button';
     await clickDevExtremeButton(page, triggerButton);
@@ -33,7 +33,7 @@ test.describe('DevExtreme Popup Component', () => {
     await closeDevExtremePopup(page, { useCloseButton: true });
   });
 
-  test.skip('should wait for popup without title', async ({ page }) => {
+  test('should wait for popup without title', async ({ page }) => {
     await clickDevExtremeButton(page, '#open-popup-button');
 
     // Wait for any popup to appear
@@ -43,7 +43,7 @@ test.describe('DevExtreme Popup Component', () => {
     await closeDevExtremePopup(page);
   });
 
-  test.skip('should close popup using Escape key', async ({ page }) => {
+  test('should close popup using Escape key', async ({ page }) => {
     await clickDevExtremeButton(page, '#open-popup-button');
     await waitForDevExtremePopup(page);
 
@@ -51,7 +51,7 @@ test.describe('DevExtreme Popup Component', () => {
     await closeDevExtremePopup(page, { useCloseButton: false });
   });
 
-  test.skip('should handle popup with custom timeout', async ({ page }) => {
+  test('should handle popup with custom timeout', async ({ page }) => {
     await clickDevExtremeButton(page, '#open-popup-button');
 
     // Wait with custom timeout
@@ -62,5 +62,6 @@ test.describe('DevExtreme Popup Component', () => {
     await closeDevExtremePopup(page, { timeout: 10000 });
   });
 });
+
 
 

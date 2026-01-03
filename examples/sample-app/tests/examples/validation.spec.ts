@@ -12,11 +12,11 @@ import {
 
 test.describe('DevExtreme Validation Component', () => {
   test.beforeEach(async ({ page }) => {
-    // Navigate to your application
-    // await page.goto('http://localhost:4200');
+    // Navigate to sample application
+    await page.goto('http://localhost:4200');
   });
 
-  test.skip('should validate a single input field', async ({ page }) => {
+  test('should validate a single input field', async ({ page }) => {
     const formSelector = '#my-form';
 
     // Fill form fields
@@ -35,7 +35,7 @@ test.describe('DevExtreme Validation Component', () => {
     expect(validation.message).toBeTruthy();
   });
 
-  test.skip('should get all validation messages from validation group', async ({ page }) => {
+  test('should get all validation messages from validation group', async ({ page }) => {
     const formSelector = '#my-form';
 
     // Fill form with invalid data
@@ -54,7 +54,7 @@ test.describe('DevExtreme Validation Component', () => {
     expect(allMessages.length).toBeGreaterThan(0);
   });
 
-  test.skip('should check validation for valid input', async ({ page }) => {
+  test('should check validation for valid input', async ({ page }) => {
     await fillDevExtremeInput(page, '#email-input', 'valid@email.com');
     await clickDevExtremeButton(page, '#submit-button');
 
@@ -65,7 +65,7 @@ test.describe('DevExtreme Validation Component', () => {
     expect(validation.isValid).toBe(true);
   });
 
-  test.skip('should get validation messages without selector', async ({ page }) => {
+  test('should get validation messages without selector', async ({ page }) => {
     // Get messages from default validation group
     await clickDevExtremeButton(page, '#submit-button');
 
@@ -74,5 +74,6 @@ test.describe('DevExtreme Validation Component', () => {
     expect(Array.isArray(messages)).toBe(true);
   });
 });
+
 
 

@@ -72,10 +72,10 @@
         [allowColumnResizing]="true"
         [columnAutoWidth]="true"
         [showBorders]="true">
-        <dxo-column dataField="id" caption="ID" [width]="80"></dxo-column>
-        <dxo-column dataField="name" caption="Name"></dxo-column>
-        <dxo-column dataField="email" caption="Email"></dxo-column>
-        <dxo-column dataField="status" caption="Status"></dxo-column>
+        <dxi-column dataField="id" caption="ID" [width]="80"></dxi-column>
+        <dxi-column dataField="name" caption="Name"></dxi-column>
+        <dxi-column dataField="email" caption="Email"></dxi-column>
+        <dxi-column dataField="status" caption="Status"></dxi-column>
       </dx-data-grid>
     </div>
   </section>
@@ -118,24 +118,24 @@
   <section id="validation-section" class="section">
     <h2>Validation Component</h2>
     <div class="demo-group">
-      <dx-validation-group #validationGroup (onInitialized)="onValidationGroupInit($event)">
+      <div dx-validation-group #validationGroup (onInitialized)="onValidationGroupInit($event)">
         <dx-text-box
           id="name-input"
           [(value)]="nameInputValue"
           placeholder="Name (required)">
-          <dxo-validator>
-            <dxo-validation-rule type="required" message="Name is required"></dxo-validation-rule>
-          </dxo-validator>
+          <dx-validator>
+            <dxi-validation-rule type="required" message="Name is required"></dxi-validation-rule>
+          </dx-validator>
         </dx-text-box>
         
         <dx-text-box
           id="email-input"
           [(value)]="emailInputValue"
           placeholder="Email (required, must be valid)">
-          <dxo-validator>
-            <dxo-validation-rule type="required" message="Email is required"></dxo-validation-rule>
-            <dxo-validation-rule type="email" message="Email is invalid"></dxo-validation-rule>
-          </dxo-validator>
+          <dx-validator>
+            <dxi-validation-rule type="required" message="Email is required"></dxi-validation-rule>
+            <dxi-validation-rule type="email" message="Email is invalid"></dxi-validation-rule>
+          </dx-validator>
         </dx-text-box>
         
         <dx-button
@@ -144,7 +144,7 @@
           (onClick)="onSubmit()"
           type="success">
         </dx-button>
-      </dx-validation-group>
+      </div>
     </div>
   </section>
 </div>

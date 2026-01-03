@@ -10,11 +10,11 @@ import {
 
 test.describe('DevExtreme Component State Checking', () => {
   test.beforeEach(async ({ page }) => {
-    // Navigate to your application
-    // await page.goto('http://localhost:4200');
+    // Navigate to sample application
+    await page.goto('http://localhost:4200');
   });
 
-  test.skip('should check if component is disabled', async ({ page }) => {
+  test('should check if component is disabled', async ({ page }) => {
     const componentSelector = '#my-component';
 
     await waitForDevExtremeComponent(page, componentSelector);
@@ -27,7 +27,7 @@ test.describe('DevExtreme Component State Checking', () => {
     expect(typeof isDisabled).toBe('boolean');
   });
 
-  test.skip('should check if component is readonly', async ({ page }) => {
+  test('should check if component is readonly', async ({ page }) => {
     const componentSelector = '#my-component';
 
     await waitForDevExtremeComponent(page, componentSelector);
@@ -40,7 +40,7 @@ test.describe('DevExtreme Component State Checking', () => {
     expect(typeof isReadonly).toBe('boolean');
   });
 
-  test.skip('should check if component is visible', async ({ page }) => {
+  test('should check if component is visible', async ({ page }) => {
     const componentSelector = '#my-component';
 
     await waitForDevExtremeComponent(page, componentSelector);
@@ -53,7 +53,7 @@ test.describe('DevExtreme Component State Checking', () => {
     expect(isVisible).toBe(true);
   });
 
-  test.skip('should check if component is hidden', async ({ page }) => {
+  test('should check if component is hidden', async ({ page }) => {
     const componentSelector = '#my-component';
 
     await waitForDevExtremeComponent(page, componentSelector);
@@ -66,7 +66,7 @@ test.describe('DevExtreme Component State Checking', () => {
     expect(typeof isHidden).toBe('boolean');
   });
 
-  test.skip('should check multiple states', async ({ page }) => {
+  test('should check multiple states', async ({ page }) => {
     const componentSelector = '#my-component';
 
     await waitForDevExtremeComponent(page, componentSelector);
@@ -92,5 +92,6 @@ test.describe('DevExtreme Component State Checking', () => {
     // Add your assertions based on expected state
   });
 });
+
 
 

@@ -11,11 +11,11 @@ import {
 
 test.describe('DevExtreme Dropdown Component', () => {
   test.beforeEach(async ({ page }) => {
-    // Navigate to your application
-    // await page.goto('http://localhost:4200');
+    // Navigate to sample application
+    await page.goto('http://localhost:4200');
   });
 
-  test.skip('should select value by text', async ({ page }) => {
+  test('should select value by text', async ({ page }) => {
     const dropdownSelector = '#my-dropdown';
 
     // Wait for dropdown to be ready
@@ -31,7 +31,7 @@ test.describe('DevExtreme Dropdown Component', () => {
     expect(value).toContain('Option 1');
   });
 
-  test.skip('should select value by data-value attribute', async ({ page }) => {
+  test('should select value by data-value attribute', async ({ page }) => {
     const dropdownSelector = '#my-dropdown';
 
     await waitForDevExtremeComponent(page, dropdownSelector);
@@ -45,7 +45,7 @@ test.describe('DevExtreme Dropdown Component', () => {
     expect(value).toBeTruthy();
   });
 
-  test.skip('should handle numeric values', async ({ page }) => {
+  test('should handle numeric values', async ({ page }) => {
     const dropdownSelector = '#my-dropdown';
 
     await waitForDevExtremeComponent(page, dropdownSelector);
@@ -56,5 +56,6 @@ test.describe('DevExtreme Dropdown Component', () => {
     });
   });
 });
+
 
 

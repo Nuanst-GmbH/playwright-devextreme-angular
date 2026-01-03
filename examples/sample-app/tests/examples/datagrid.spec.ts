@@ -11,11 +11,11 @@ import {
 
 test.describe('DevExtreme DataGrid Component', () => {
   test.beforeEach(async ({ page }) => {
-    // Navigate to your application
-    // await page.goto('http://localhost:4200');
+    // Navigate to sample application
+    await page.goto('http://localhost:4200');
   });
 
-  test.skip('should wait for grid to load and get cell value by index', async ({ page }) => {
+  test('should wait for grid to load and get cell value by index', async ({ page }) => {
     const gridSelector = '#my-datagrid';
 
     // Wait for grid to load data
@@ -31,7 +31,7 @@ test.describe('DevExtreme DataGrid Component', () => {
     expect(cellValue).toBeTruthy();
   });
 
-  test.skip('should get cell value by column name', async ({ page }) => {
+  test('should get cell value by column name', async ({ page }) => {
     const gridSelector = '#my-datagrid';
 
     await waitForDevExtremeDataGridLoad(page, gridSelector);
@@ -46,7 +46,7 @@ test.describe('DevExtreme DataGrid Component', () => {
     expect(cellValue).toBeTruthy();
   });
 
-  test.skip('should click a cell by index', async ({ page }) => {
+  test('should click a cell by index', async ({ page }) => {
     const gridSelector = '#my-datagrid';
 
     await waitForDevExtremeDataGridLoad(page, gridSelector);
@@ -55,7 +55,7 @@ test.describe('DevExtreme DataGrid Component', () => {
     await clickDevExtremeDataGridCell(page, gridSelector, 0, 1);
   });
 
-  test.skip('should click a cell by column name', async ({ page }) => {
+  test('should click a cell by column name', async ({ page }) => {
     const gridSelector = '#my-datagrid';
 
     await waitForDevExtremeDataGridLoad(page, gridSelector);
@@ -64,7 +64,7 @@ test.describe('DevExtreme DataGrid Component', () => {
     await clickDevExtremeDataGridCell(page, gridSelector, 0, 'columnName');
   });
 
-  test.skip('should handle multiple rows', async ({ page }) => {
+  test('should handle multiple rows', async ({ page }) => {
     const gridSelector = '#my-datagrid';
 
     await waitForDevExtremeDataGridLoad(page, gridSelector);
@@ -87,5 +87,6 @@ test.describe('DevExtreme DataGrid Component', () => {
     expect(row1Value).toBeTruthy();
   });
 });
+
 
 

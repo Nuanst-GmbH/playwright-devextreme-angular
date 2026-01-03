@@ -71,9 +71,11 @@ export class AppComponent {
   }
   
   onSubmit() {
-    const result = this.validationGroup.instance.validate();
-    if (result.isValid) {
-      alert('Form is valid!');
+    if (this.validationGroup) {
+      const result = this.validationGroup.instance.validate();
+      if (result.isValid) {
+        alert('Form is valid!');
+      }
     }
   }
   

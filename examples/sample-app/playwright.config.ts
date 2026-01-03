@@ -1,11 +1,11 @@
 import { defineConfig, devices } from '@playwright/test';
 
 /**
- * Playwright configuration for testing DevExtreme Angular components
+ * Playwright configuration for the sample DevExtreme Angular app
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  testDir: './examples/sample-app/tests',
+  testDir: './tests',
   
   /* Run tests in files in parallel */
   fullyParallel: true,
@@ -51,7 +51,7 @@ export default defineConfig({
 
   /* Run your local dev server before starting the tests */
   webServer: {
-    command: 'cd examples/sample-app && npm install && npm start',
+    command: 'npm start',
     url: 'http://localhost:4200',
     reuseExistingServer: !process.env.CI,
     timeout: 120 * 1000,

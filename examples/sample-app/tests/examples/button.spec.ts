@@ -14,11 +14,11 @@ import {
 
 test.describe('DevExtreme Button Component', () => {
   test.beforeEach(async ({ page }) => {
-    // Navigate to your application
-    // await page.goto('http://localhost:4200');
+    // Navigate to sample application
+    await page.goto('http://localhost:4200');
   });
 
-  test.skip('should wait for button to be ready and click it', async ({ page }) => {
+  test('should wait for button to be ready and click it', async ({ page }) => {
     const buttonSelector = '#my-button';
 
     // Wait for button to be ready
@@ -28,7 +28,7 @@ test.describe('DevExtreme Button Component', () => {
     await clickDevExtremeButton(page, buttonSelector);
   });
 
-  test.skip('should check if button is disabled', async ({ page }) => {
+  test('should check if button is disabled', async ({ page }) => {
     const buttonSelector = '#my-button';
 
     // Wait for button to be ready
@@ -43,7 +43,7 @@ test.describe('DevExtreme Button Component', () => {
     expect(isDisabled).toBe(false);
   });
 
-  test.skip('should wait for button to become enabled before clicking', async ({ page }) => {
+  test('should wait for button to become enabled before clicking', async ({ page }) => {
     const buttonSelector = '#my-button';
 
     // Wait for button to be ready
@@ -73,7 +73,7 @@ test.describe('DevExtreme Button Component', () => {
     await clickDevExtremeButton(page, buttonSelector);
   });
 
-  test.skip('should force click a button even if disabled', async ({ page }) => {
+  test('should force click a button even if disabled', async ({ page }) => {
     const buttonSelector = '#my-button';
 
     await waitForDevExtremeComponent(page, buttonSelector);
@@ -82,4 +82,5 @@ test.describe('DevExtreme Button Component', () => {
     await clickDevExtremeButton(page, buttonSelector, { force: true });
   });
 });
+
 

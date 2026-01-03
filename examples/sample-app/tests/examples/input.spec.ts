@@ -14,11 +14,11 @@ import {
 
 test.describe('DevExtreme Input Component', () => {
   test.beforeEach(async ({ page }) => {
-    // Navigate to your application
-    // await page.goto('http://localhost:4200');
+    // Navigate to sample application
+    await page.goto('http://localhost:4200');
   });
 
-  test.skip('should fill a text input', async ({ page }) => {
+  test('should fill a text input', async ({ page }) => {
     const inputSelector = '#my-textbox';
 
     // Wait for component to be ready
@@ -34,7 +34,7 @@ test.describe('DevExtreme Input Component', () => {
     expect(value).toBe('Hello DevExtreme');
   });
 
-  test.skip('should append to existing value', async ({ page }) => {
+  test('should append to existing value', async ({ page }) => {
     const inputSelector = '#my-textbox';
 
     await waitForDevExtremeComponent(page, inputSelector);
@@ -45,7 +45,7 @@ test.describe('DevExtreme Input Component', () => {
     });
   });
 
-  test.skip('should get value from input', async ({ page }) => {
+  test('should get value from input', async ({ page }) => {
     const inputSelector = '#my-textbox';
 
     await waitForDevExtremeComponent(page, inputSelector);
@@ -55,7 +55,7 @@ test.describe('DevExtreme Input Component', () => {
     expect(value).toBeTruthy();
   });
 
-  test.skip('should handle textarea elements', async ({ page }) => {
+  test('should handle textarea elements', async ({ page }) => {
     const textareaSelector = '#my-textarea';
 
     await waitForDevExtremeComponent(page, textareaSelector);
@@ -67,5 +67,6 @@ test.describe('DevExtreme Input Component', () => {
     expect(value).toBe(longText);
   });
 });
+
 
 

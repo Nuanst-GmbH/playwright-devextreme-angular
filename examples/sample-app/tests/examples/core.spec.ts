@@ -15,11 +15,11 @@ import {
 
 test.describe('DevExtreme Core Utilities', () => {
   test.beforeEach(async ({ page }) => {
-    // Navigate to your application
-    // await page.goto('http://localhost:4200');
+    // Navigate to sample application
+    await page.goto('http://localhost:4200');
   });
 
-  test.skip('should wait for component to be ready', async ({ page }) => {
+  test('should wait for component to be ready', async ({ page }) => {
     const componentSelector = '#my-component';
 
     // Wait for component to be fully initialized
@@ -27,7 +27,7 @@ test.describe('DevExtreme Core Utilities', () => {
     expect(component).toBeTruthy();
   });
 
-  test.skip('should wait for component with custom timeout', async ({ page }) => {
+  test('should wait for component with custom timeout', async ({ page }) => {
     const componentSelector = '#slow-component';
 
     const component = await waitForDevExtremeComponent(page, componentSelector, {
@@ -36,7 +36,7 @@ test.describe('DevExtreme Core Utilities', () => {
     expect(component).toBeTruthy();
   });
 
-  test.skip('should wait for component in different states', async ({ page }) => {
+  test('should wait for component in different states', async ({ page }) => {
     const componentSelector = '#my-component';
 
     // Wait for component to be attached (but not necessarily visible)
@@ -50,7 +50,7 @@ test.describe('DevExtreme Core Utilities', () => {
     });
   });
 
-  test.skip('should handle Shadow DOM components', async ({ page }) => {
+  test('should handle Shadow DOM components', async ({ page }) => {
     // Some DevExtreme components may use Shadow DOM
     const hostSelector = '#shadow-host';
     const innerSelector = 'button';
@@ -65,7 +65,7 @@ test.describe('DevExtreme Core Utilities', () => {
     await shadowButton.click();
   });
 
-  test.skip('should wait for async operations to complete', async ({ page }) => {
+  test('should wait for async operations to complete', async ({ page }) => {
     const componentSelector = '#async-component';
 
     // Wait for component to finish loading data
@@ -78,7 +78,7 @@ test.describe('DevExtreme Core Utilities', () => {
     await clickDevExtremeButton(page, componentSelector + ' button');
   });
 
-  test.skip('should wait for async operations with default settings', async ({ page }) => {
+  test('should wait for async operations with default settings', async ({ page }) => {
     const componentSelector = '#async-component';
 
     await waitForDevExtremeAsyncOperation(page, componentSelector);
@@ -88,5 +88,6 @@ test.describe('DevExtreme Core Utilities', () => {
     expect(component).toBeTruthy();
   });
 });
+
 
 

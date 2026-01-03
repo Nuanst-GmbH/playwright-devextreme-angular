@@ -10,10 +10,11 @@
   ],
   "scripts": {
     "build": "tsc",
-    "test": "playwright test",
-    "test:ui": "playwright test --ui",
-    "test:headed": "playwright test --headed",
-    "test:debug": "playwright test --debug",
+    "test": "playwright test --config=playwright.config.ts",
+    "test:ui": "playwright test --ui --config=playwright.config.ts",
+    "test:headed": "playwright test --headed --config=playwright.config.ts",
+    "test:debug": "playwright test --debug --config=playwright.config.ts",
+    "test:sample": "cd examples/sample-app && npm run test:e2e",
     "prepublishOnly": "npm run build"
   },
   "keywords": [
