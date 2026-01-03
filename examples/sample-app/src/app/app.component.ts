@@ -20,9 +20,14 @@ export class AppComponent {
   buttonText = 'Click Me';
   
   // Input values
-  textInputValue = '';
+  textInputValue = 'Initial value';
   emailInputValue = '';
   nameInputValue = '';
+  textareaValue = '';
+  
+  // Validation form values (separate from input section)
+  validationNameValue = '';
+  validationEmailValue = '';
   
   // Dropdown
   dropdownItems = [
@@ -49,7 +54,19 @@ export class AppComponent {
   // Validation
   validationGroup: any;
   
-  constructor() {}
+  // Async component
+  asyncGridData: GridItem[] = [];
+  isLoading = false;
+  
+  constructor() {
+    // Simulate async data loading
+    setTimeout(() => {
+      this.asyncGridData = [
+        { id: 1, name: 'Async Item 1', email: '', status: '' },
+        { id: 2, name: 'Async Item 2', email: '', status: '' }
+      ];
+    }, 1000);
+  }
   
   onButtonClick() {
     this.buttonText = 'Clicked!';
@@ -81,6 +98,18 @@ export class AppComponent {
   
   onValidationGroupInit(e: any) {
     this.validationGroup = e.component;
+  }
+  
+  loadAsyncData() {
+    this.isLoading = true;
+    setTimeout(() => {
+      this.asyncGridData = [
+        { id: 1, name: 'Async Item 1', email: 'async1@example.com', status: 'Active' },
+        { id: 2, name: 'Async Item 2', email: 'async2@example.com', status: 'Active' },
+        { id: 3, name: 'Async Item 3', email: 'async3@example.com', status: 'Inactive' }
+      ];
+      this.isLoading = false;
+    }, 2000);
   }
 }
 

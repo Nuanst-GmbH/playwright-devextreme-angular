@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Sample DevExtreme Angular app for testing Playwright helpers",
   "scripts": {
-    "start": "ng serve --port 4200",
+    "start": "ng serve --port 4200 --configuration development",
     "build": "ng build",
     "test": "ng test",
     "test:e2e": "playwright test",

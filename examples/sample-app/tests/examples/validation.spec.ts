@@ -17,11 +17,12 @@ test.describe('DevExtreme Validation Component', () => {
   });
 
   test('should validate a single input field', async ({ page }) => {
-    const formSelector = '#my-form';
+    // Use validation section specific selector
+    const emailInputSelector = '#validation-section #email-input';
 
-    // Fill form fields
-    await fillDevExtremeInput(page, '#name-input', 'John Doe');
-    await fillDevExtremeInput(page, '#email-input', 'invalid-email');
+    // Fill form fields in validation section
+    await fillDevExtremeInput(page, '#validation-section #name-input', 'John Doe');
+    await fillDevExtremeInput(page, emailInputSelector, 'invalid-email');
 
     // Trigger validation (e.g., by clicking submit)
     await clickDevExtremeButton(page, '#submit-button');
@@ -29,19 +30,18 @@ test.describe('DevExtreme Validation Component', () => {
     // Wait for validation
     const validation = await waitForDevExtremeValidation(
       page,
-      '#email-input'
+      emailInputSelector
     );
-    expect(validation.isValid).toBe(false);
+    expect(validation.isValid).toEqual(false);
     expect(validation.message).toBeTruthy();
   });
 
   test('should get all validation messages from validation group', async ({ page }) => {
     const formSelector = '#my-form';
 
-    // Fill form with invalid data
-    await fillDevExtremeInput(page, '#name-input', '');
-    await fillDevExtremeInput(page, '#email-input', 'invalid-email');
-    await fillDevExtremeInput(page, '#phone-input', '123');
+    // Fill form with invalid data (use validation section selectors)
+    await fillDevExtremeInput(page, '#validation-section #name-input', '');
+    await fillDevExtremeInput(page, '#validation-section #email-input', 'invalid-email');
 
     // Trigger validation
     await clickDevExtremeButton(page, '#submit-button');
@@ -55,14 +55,17 @@ test.describe('DevExtreme Validation Component', () => {
   });
 
   test('should check validation for valid input', async ({ page }) => {
-    await fillDevExtremeInput(page, '#email-input', 'valid@email.com');
+    const emailInputSelector = '#validation-section #email-input';
+    
+    await fillDevExtremeInput(page, '#validation-section #name-input', 'John Doe');
+    await fillDevExtremeInput(page, emailInputSelector, 'valid@email.com');
     await clickDevExtremeButton(page, '#submit-button');
 
     const validation = await waitForDevExtremeValidation(
       page,
-      '#email-input'
+      emailInputSelector
     );
-    expect(validation.isValid).toBe(true);
+    expect(validation.isValid).toEqual(true);
   });
 
   test('should get validation messages without selector', async ({ page }) => {
@@ -71,7 +74,7 @@ test.describe('DevExtreme Validation Component', () => {
 
     const messages = await getDevExtremeValidationMessages(page);
     // Assert based on your test requirements
-    expect(Array.isArray(messages)).toBe(true);
+    expect(Array.isArray(messages)).toEqual(true);
   });
 });
 

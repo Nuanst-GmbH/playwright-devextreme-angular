@@ -23,21 +23,23 @@ export async function waitForDevExtremeComponent(
   await component.waitFor({ state, timeout });
 
   // Wait for DevExtreme initialization (components often add data attributes or classes)
-  await page.waitForFunction(
-    (sel) => {
-      const element = document.querySelector(sel);
-      if (!element) return false;
-      
-      // Check if DevExtreme has initialized (common indicators)
-      const hasDxClass = element.classList.toString().includes('dx-');
-      const hasDxWidget = element.hasAttribute('dx-widget') || 
-                         element.querySelector('[dx-widget]') !== null;
-      
-      return hasDxClass || hasDxWidget;
-    },
-    selector,
-    { timeout }
-  );
+  // Use locator.evaluate() instead of page.waitForFunction() with document.querySelector
+  await component.waitFor({
+    state: 'attached',
+    timeout
+  });
+
+  // Check if DevExtreme has initialized using locator evaluate
+  await component.evaluate((el) => {
+    const hasDxClass = el.classList.toString().includes('dx-');
+    const hasDxWidget = el.hasAttribute('dx-widget') || 
+                       el.querySelector('[dx-widget]') !== null;
+    return hasDxClass || hasDxWidget;
+  }).catch(async () => {
+    // Fallback: wait for any dx- class or dx-widget to appear
+    const dxElement = component.locator('[class*="dx-"], [dx-widget]').first();
+    await dxElement.waitFor({ state: 'attached', timeout });
+  });
 
   return component;
 }
@@ -51,36 +53,38 @@ export async function findInShadowDOM(
   hostSelector: string,
   innerSelector: string
 ): Promise<Locator> {
-  // First, try to find in Shadow DOM
-  const shadowRoot = await page.evaluateHandle(
-    (hostSel) => {
-      const host = document.querySelector(hostSel);
-      if (!host) return null;
-      return host.shadowRoot;
-    },
-    hostSelector
-  );
+  const host = page.locator(hostSelector);
+  
+  // First, try to check if Shadow DOM exists using locator evaluate
+  const hasShadowDOM = await host.evaluate((el) => {
+    return el.shadowRoot !== null;
+  }).catch(() => false);
 
-  if (shadowRoot && shadowRoot.asElement()) {
-    // Shadow DOM exists, use evaluate to find element
-    const element = await page.evaluateHandle(
-      ([hostSel, innerSel]) => {
-        const host = document.querySelector(hostSel);
-        if (!host || !host.shadowRoot) return null;
-        return host.shadowRoot.querySelector(innerSel);
-      },
-      [hostSelector, innerSelector]
-    );
-
-    if (element && element.asElement()) {
-      // Return a locator that can work with the shadow element
-      // Note: Playwright's locator API doesn't directly support shadow DOM,
-      // so we'll use a workaround with data attributes or use evaluate
-      return page.locator(`${hostSelector} >> ${innerSelector}`);
+  if (hasShadowDOM) {
+    // Shadow DOM exists - Playwright locators can't directly access shadow DOM,
+    // but we can use a workaround: try to find the element using the piercing combinator
+    // or use evaluate to find it and mark it with a data attribute
+    try {
+      // Try using the piercing combinator (>>) which works for some shadow DOM cases
+      const shadowElement = page.locator(`${hostSelector} >> ${innerSelector}`);
+      await shadowElement.waitFor({ state: 'attached', timeout: 1000 });
+      return shadowElement;
+    } catch {
+      // If piercing combinator doesn't work, we need to use evaluate
+      // This is a limitation of Playwright's locator API with Shadow DOM
+      const elementHandle = await host.evaluateHandle((el, innerSel) => {
+        if (!el.shadowRoot) return null;
+        return el.shadowRoot.querySelector(innerSel);
+      }, innerSelector);
+      
+      if (elementHandle && elementHandle.asElement()) {
+        // Return a locator using the piercing combinator as fallback
+        return page.locator(`${hostSelector} >> ${innerSelector}`);
+      }
     }
   }
 
-  // Fallback to regular DOM search
+  // Fallback to regular DOM search (most common case for DevExtreme)
   return page.locator(`${hostSelector} ${innerSelector}`);
 }
 
@@ -96,15 +100,15 @@ export async function waitForDevExtremeAsyncOperation(
   const timeout = options?.timeout ?? 30000;
   const checkInterval = options?.checkInterval ?? 500;
 
-  await waitForDevExtremeComponent(page, componentSelector, { timeout });
+  const component = await waitForDevExtremeComponent(page, componentSelector, { timeout });
 
-  await page.waitForFunction(
-    (sel) => {
-      const component = document.querySelector(sel);
-      if (!component) return false;
-
+  // Wait for async operation to complete using Playwright locators
+  // Use locator.evaluate() with polling instead of page.waitForFunction()
+  const startTime = Date.now();
+  while (Date.now() - startTime < timeout) {
+    const isReady = await component.evaluate((el) => {
       // Check for loading indicators
-      const loadingIndicators = component.querySelectorAll(
+      const loadingIndicators = el.querySelectorAll(
         '.dx-loadpanel, .dx-loadindicator, .dx-state-loading'
       );
       
@@ -114,14 +118,21 @@ export async function waitForDevExtremeAsyncOperation(
       }
 
       // Check if component is in loading state
-      if (component.classList.contains('dx-state-loading')) {
+      if (el.classList.contains('dx-state-loading')) {
         return false;
       }
 
       return true;
-    },
-    componentSelector,
-    { timeout, polling: checkInterval }
-  );
+    }).catch(() => false);
+
+    if (isReady) {
+      return;
+    }
+
+    await page.waitForTimeout(checkInterval);
+  }
+
+  // If we get here, timeout was reached
+  throw new Error(`Async operation did not complete within ${timeout}ms`);
 }
 

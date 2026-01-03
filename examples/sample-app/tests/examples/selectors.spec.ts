@@ -55,7 +55,7 @@ test.describe('DevExtreme Selectors', () => {
     // Check for loading state
     const loadingIndicator = page.locator(DevExtremeSelectors.loadIndicator);
     const isVisible = await loadingIndicator.isVisible().catch(() => false);
-    expect(typeof isVisible).toBe('boolean');
+    expect(typeof isVisible).toEqual('boolean');
   });
 });
 

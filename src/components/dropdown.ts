@@ -43,8 +43,10 @@ export async function selectDevExtremeDropdown(
     await option.waitFor({ state: 'visible', timeout });
     await option.click({ timeout });
   } else {
+    // For value-based selection, try multiple strategies
+    // DevExtreme uses data-value or the actual value in the item
     const option = page.locator(
-      `.dx-list-item[data-value="${value}"], .dx-item[data-value="${value}"]`
+      `.dx-list-item[data-value="${value}"], .dx-item[data-value="${value}"], .dx-list-item:has-text("${value}")`
     ).first();
     await option.waitFor({ state: 'visible', timeout });
     await option.click({ timeout });

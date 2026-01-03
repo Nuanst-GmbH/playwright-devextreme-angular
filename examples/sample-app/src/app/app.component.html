@@ -32,17 +32,70 @@
       </dx-text-box>
       
       <dx-text-box
-        id="name-input"
+        id="name-input-simple"
         [(value)]="nameInputValue"
         placeholder="Enter your name">
       </dx-text-box>
       
       <dx-text-box
-        id="email-input"
+        id="email-input-simple"
         [(value)]="emailInputValue"
         placeholder="Enter your email"
         type="email">
       </dx-text-box>
+      
+      <textarea
+        id="my-textarea"
+        [(ngModel)]="textareaValue"
+        placeholder="Enter text in textarea"
+        rows="5"
+        style="width: 100%; padding: 8px; box-sizing: border-box;">
+      </textarea>
+    </div>
+  </section>
+  
+  <!-- Generic Component Section (for core tests) -->
+  <section id="core-section" class="section">
+    <h2>Core Component Examples</h2>
+    <div class="demo-group">
+      <dx-text-box
+        id="my-component"
+        [(value)]="textInputValue"
+        placeholder="Generic component for testing">
+      </dx-text-box>
+      
+      <dx-text-box
+        id="slow-component"
+        [(value)]="textInputValue"
+        placeholder="Slow loading component">
+      </dx-text-box>
+      
+      <div id="async-component" class="async-container">
+        <dx-data-grid
+          [dataSource]="asyncGridData"
+          [showBorders]="true">
+          <dxi-column dataField="id" caption="ID"></dxi-column>
+          <dxi-column dataField="name" caption="Name"></dxi-column>
+        </dx-data-grid>
+        <dx-button
+          text="Load Data"
+          (onClick)="loadAsyncData()"
+          type="default">
+        </dx-button>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Shadow DOM Section (for demonstration) -->
+  <section id="shadow-section" class="section">
+    <h2>Shadow DOM Component</h2>
+    <div class="demo-group">
+      <div id="shadow-host" class="shadow-host">
+        <dx-button
+          text="Shadow DOM Button"
+          type="default">
+        </dx-button>
+      </div>
     </div>
   </section>
   
@@ -118,10 +171,10 @@
   <section id="validation-section" class="section">
     <h2>Validation Component</h2>
     <div class="demo-group">
-      <div dx-validation-group #validationGroup (onInitialized)="onValidationGroupInit($event)">
+      <div id="my-form" dx-validation-group #validationGroup (onInitialized)="onValidationGroupInit($event)">
         <dx-text-box
           id="name-input"
-          [(value)]="nameInputValue"
+          [(value)]="validationNameValue"
           placeholder="Name (required)">
           <dx-validator>
             <dxi-validation-rule type="required" message="Name is required"></dxi-validation-rule>
@@ -130,7 +183,7 @@
         
         <dx-text-box
           id="email-input"
-          [(value)]="emailInputValue"
+          [(value)]="validationEmailValue"
           placeholder="Email (required, must be valid)">
           <dx-validator>
             <dxi-validation-rule type="required" message="Email is required"></dxi-validation-rule>

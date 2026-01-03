@@ -24,7 +24,7 @@ test.describe('DevExtreme Component State Checking', () => {
       componentSelector,
       'disabled'
     );
-    expect(typeof isDisabled).toBe('boolean');
+    expect(typeof isDisabled).toEqual('boolean');
   });
 
   test('should check if component is readonly', async ({ page }) => {
@@ -50,7 +50,7 @@ test.describe('DevExtreme Component State Checking', () => {
       componentSelector,
       'visible'
     );
-    expect(isVisible).toBe(true);
+    expect(isVisible).toEqual(true);
   });
 
   test('should check if component is hidden', async ({ page }) => {
@@ -88,7 +88,7 @@ test.describe('DevExtreme Component State Checking', () => {
       'visible'
     );
 
-    expect(isVisible).toBe(true);
+    expect(isVisible).toEqual(true);
     // Add your assertions based on expected state
   });
 });

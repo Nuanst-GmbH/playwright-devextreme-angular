@@ -21,7 +21,7 @@ test.describe('DevExtreme DataGrid Component', () => {
     // Wait for grid to load data
     await waitForDevExtremeDataGridLoad(page, gridSelector);
 
-    // Get cell value by row and column index
+    // Get cell value by row and column index (column 1 = name)
     const cellValue = await getDevExtremeDataGridCellValue(
       page,
       gridSelector,
@@ -29,6 +29,7 @@ test.describe('DevExtreme DataGrid Component', () => {
       1
     );
     expect(cellValue).toBeTruthy();
+    expect(cellValue).toEqual('John Doe');
   });
 
   test('should get cell value by column name', async ({ page }) => {
@@ -36,14 +37,16 @@ test.describe('DevExtreme DataGrid Component', () => {
 
     await waitForDevExtremeDataGridLoad(page, gridSelector);
 
-    // Get cell value by column name
+    // Get cell value by column name using the new columnName option
     const cellValue = await getDevExtremeDataGridCellValue(
       page,
       gridSelector,
       0,
-      'columnName'
+      0, // columnIndex (ignored when columnName is provided)
+      { columnName: 'name' }
     );
     expect(cellValue).toBeTruthy();
+    expect(cellValue).toEqual('John Doe');
   });
 
   test('should click a cell by index', async ({ page }) => {
@@ -60,8 +63,8 @@ test.describe('DevExtreme DataGrid Component', () => {
 
     await waitForDevExtremeDataGridLoad(page, gridSelector);
 
-    // Click a cell by column name
-    await clickDevExtremeDataGridCell(page, gridSelector, 0, 'columnName');
+    // Click a cell by column name using the new columnName option
+    await clickDevExtremeDataGridCell(page, gridSelector, 0, 0, { columnName: 'name' });
   });
 
   test('should handle multiple rows', async ({ page }) => {
@@ -69,22 +72,29 @@ test.describe('DevExtreme DataGrid Component', () => {
 
     await waitForDevExtremeDataGridLoad(page, gridSelector);
 
-    // Get values from multiple rows
-    const row0Value = await getDevExtremeDataGridCellValue(
+    // Get values from multiple rows (column 0 = id, column 1 = name)
+    const row0Id = await getDevExtremeDataGridCellValue(
       page,
       gridSelector,
       0,
       0
     );
-    const row1Value = await getDevExtremeDataGridCellValue(
+    const row0Name = await getDevExtremeDataGridCellValue(
+      page,
+      gridSelector,
+      0,
+      1
+    );
+    const row1Name = await getDevExtremeDataGridCellValue(
       page,
       gridSelector,
       1,
-      0
+      1
     );
 
-    expect(row0Value).toBeTruthy();
-    expect(row1Value).toBeTruthy();
+    expect(row0Id).toEqual('1');
+    expect(row0Name).toEqual('John Doe');
+    expect(row1Name).toEqual('Jane Smith');
   });
 });
 

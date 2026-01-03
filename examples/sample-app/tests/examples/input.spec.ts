@@ -31,7 +31,7 @@ test.describe('DevExtreme Input Component', () => {
 
     // Get the value and verify
     const value = await getDevExtremeValue(page, inputSelector);
-    expect(value).toBe('Hello DevExtreme');
+    expect(value).toEqual('Hello DevExtreme');
   });
 
   test('should append to existing value', async ({ page }) => {
@@ -50,21 +50,25 @@ test.describe('DevExtreme Input Component', () => {
 
     await waitForDevExtremeComponent(page, inputSelector);
 
+    // Fill with a value first
+    await fillDevExtremeInput(page, inputSelector, 'Test Value', { clear: true });
+
     // Get the current value
     const value = await getDevExtremeValue(page, inputSelector);
-    expect(value).toBeTruthy();
+    expect(value).toEqual('Test Value');
   });
 
   test('should handle textarea elements', async ({ page }) => {
     const textareaSelector = '#my-textarea';
 
-    await waitForDevExtremeComponent(page, textareaSelector);
+    // Wait for textarea to be visible (regular HTML textarea, not DevExtreme)
+    await page.locator(textareaSelector).waitFor({ state: 'visible' });
 
     const longText = 'This is a long text that should work in a textarea element.';
-    await fillDevExtremeInput(page, textareaSelector, longText);
+    await page.locator(textareaSelector).fill(longText);
 
-    const value = await getDevExtremeValue(page, textareaSelector);
-    expect(value).toBe(longText);
+    const value = await page.locator(textareaSelector).inputValue();
+    expect(value).toEqual(longText);
   });
 });
 

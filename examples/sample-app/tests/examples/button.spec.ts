@@ -40,7 +40,7 @@ test.describe('DevExtreme Button Component', () => {
       buttonSelector,
       'disabled'
     );
-    expect(isDisabled).toBe(false);
+    expect(isDisabled).toEqual(false);
   });
 
   test('should wait for button to become enabled before clicking', async ({ page }) => {
@@ -57,16 +57,12 @@ test.describe('DevExtreme Button Component', () => {
     );
 
     if (initiallyDisabled) {
-      // Wait for button to become enabled
-      await page.waitForFunction(
-        (sel) => {
-          const btn = document.querySelector(sel);
-          if (!btn) return false;
-          return !btn.hasAttribute('disabled') && 
-                 !btn.classList.contains('dx-state-disabled');
-        },
-        buttonSelector
-      );
+      // Wait for button to become enabled using locator
+      const button = page.locator(buttonSelector);
+      await button.waitFor({ state: 'visible' });
+      // Wait for disabled state to be removed
+      await expect(button).not.toHaveAttribute('disabled', '');
+      await expect(button).not.toHaveClass(/dx-state-disabled/);
     }
 
     // Now click the button
