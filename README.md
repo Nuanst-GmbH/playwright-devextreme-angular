@@ -103,12 +103,39 @@ Execute a DevExtreme component method via Angular component instance.
 
 ## Examples
 
-See the `tests/examples/` directory for comprehensive usage examples organized by component:
+See the `tests/examples/` directory for comprehensive usage examples organized by component.
 
-**Note:** The example tests are skipped by default (`test.skip()`) because they require actual DevExtreme Angular pages to run. To use them:
-1. Uncomment the `page.goto()` line in the test files
-2. Update the selectors to match your application
-3. Remove `.skip` from the test functions
+### Sample DevExtreme Angular App
+
+A sample Angular application with DevExtreme components is included in the `sample-app/` directory. This app demonstrates all the components that the helpers support:
+
+- **Button**: Interactive buttons with disabled state (`#my-button`)
+- **Input/TextBox**: Text input fields (`#my-textbox`, `#name-input`, `#email-input`)
+- **Dropdown/SelectBox**: Dropdown selection (`#my-dropdown`)
+- **DataGrid**: Data table with multiple rows (`#my-datagrid`)
+- **Popup**: Modal popup dialog (triggered by `#open-popup-button`)
+- **Validation**: Form validation with validation groups
+
+To run the sample app:
+```bash
+cd sample-app
+npm install
+npm start
+```
+
+The app will be available at `http://localhost:4200`
+
+### Running Tests with Sample App
+
+The Playwright configuration is set up to automatically start the sample app. To run tests:
+
+1. Remove `.skip` from test functions in `tests/examples/*.spec.ts`
+2. Run tests: `npm test`
+
+The tests will automatically:
+- Start the sample app server
+- Navigate to the app
+- Test all DevExtreme components using the helpers
 
 - `button.spec.ts` - Button component examples
 - `input.spec.ts` - Input/Editor component examples
