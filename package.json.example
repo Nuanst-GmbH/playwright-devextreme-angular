@@ -1,0 +1,17 @@
+{
+  "name": "playwright-devextreme-angular",
+  "version": "1.0.0",
+  "description": "Playwright tests for DevExtreme Angular components",
+  "scripts": {
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:headed": "playwright test --headed",
+    "test:debug": "playwright test --debug"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.40.0",
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  }
+}
+

@@ -1,0 +1,25 @@
+# Source files (only include dist)
+src/
+tests/
+*.ts
+!*.d.ts
+
+# Development files
+.gitignore
+.npmignore
+tsconfig.json
+package.json.example
+
+# Playwright
+test-results/
+playwright-report/
+playwright/
+
+# IDE
+.vscode/
+.idea/
+
+# Documentation
+README.md
+tests/helpers/README.md
+

@@ -1,0 +1,43 @@
+{
+  "name": "@playwright-devextreme/helpers",
+  "version": "1.0.0",
+  "description": "Playwright test helpers for DevExtreme Angular components with Shadow DOM support",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:headed": "playwright test --headed",
+    "test:debug": "playwright test --debug",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "playwright",
+    "devextreme",
+    "angular",
+    "testing",
+    "e2e",
+    "shadow-dom",
+    "test-helpers"
+  ],
+  "author": "",
+  "license": "MIT",
+  "peerDependencies": {
+    "@playwright/test": "^1.40.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.40.0",
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  }
+}
+

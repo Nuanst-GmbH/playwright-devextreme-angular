@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "rootDir": ".",
+    "outDir": "./dist-test",
+    "noEmit": true,
+    "paths": {
+      "@playwright-devextreme/helpers": ["./src/index.ts"]
+    }
+  },
+  "include": ["tests/**/*", "src/**/*"],
+  "exclude": ["node_modules", "dist", "dist-test"]
+}
+
