@@ -1,0 +1,151 @@
+<div class="container">
+  <h1>{{ title }}</h1>
+  
+  <!-- Button Section -->
+  <section id="button-section" class="section">
+    <h2>Button Component</h2>
+    <div class="demo-group">
+      <dx-button
+        id="my-button"
+        [text]="buttonText"
+        [disabled]="buttonDisabled"
+        (onClick)="onButtonClick()"
+        type="default">
+      </dx-button>
+      <dx-button
+        id="toggle-button"
+        text="Toggle Disabled"
+        (onClick)="toggleButtonDisabled()"
+        type="normal">
+      </dx-button>
+    </div>
+  </section>
+  
+  <!-- Input Section -->
+  <section id="input-section" class="section">
+    <h2>Input Components</h2>
+    <div class="demo-group">
+      <dx-text-box
+        id="my-textbox"
+        [(value)]="textInputValue"
+        placeholder="Enter text here">
+      </dx-text-box>
+      
+      <dx-text-box
+        id="name-input"
+        [(value)]="nameInputValue"
+        placeholder="Enter your name">
+      </dx-text-box>
+      
+      <dx-text-box
+        id="email-input"
+        [(value)]="emailInputValue"
+        placeholder="Enter your email"
+        type="email">
+      </dx-text-box>
+    </div>
+  </section>
+  
+  <!-- Dropdown Section -->
+  <section id="dropdown-section" class="section">
+    <h2>Dropdown Component</h2>
+    <div class="demo-group">
+      <dx-select-box
+        id="my-dropdown"
+        [dataSource]="dropdownItems"
+        displayExpr="name"
+        valueExpr="id"
+        [(value)]="selectedDropdownValue"
+        placeholder="Select an option">
+      </dx-select-box>
+    </div>
+  </section>
+  
+  <!-- DataGrid Section -->
+  <section id="datagrid-section" class="section">
+    <h2>DataGrid Component</h2>
+    <div class="demo-group">
+      <dx-data-grid
+        id="my-datagrid"
+        [dataSource]="gridData"
+        [allowColumnReordering]="true"
+        [allowColumnResizing]="true"
+        [columnAutoWidth]="true"
+        [showBorders]="true">
+        <dxi-column dataField="id" caption="ID" [width]="80"></dxi-column>
+        <dxi-column dataField="name" caption="Name"></dxi-column>
+        <dxi-column dataField="email" caption="Email"></dxi-column>
+        <dxi-column dataField="status" caption="Status"></dxi-column>
+      </dx-data-grid>
+    </div>
+  </section>
+  
+  <!-- Popup Section -->
+  <section id="popup-section" class="section">
+    <h2>Popup Component</h2>
+    <div class="demo-group">
+      <dx-button
+        id="open-popup-button"
+        text="Open Popup"
+        (onClick)="openPopup()"
+        type="default">
+      </dx-button>
+      
+      <dx-popup
+        [visible]="popupVisible"
+        [title]="popupTitle"
+        [showTitle]="true"
+        [width]="400"
+        [height]="300"
+        [dragEnabled]="true"
+        (onHiding)="closePopup()">
+        <div class="popup-content">
+          <p>This is a sample popup content.</p>
+          <dx-text-box
+            placeholder="Enter value in popup">
+          </dx-text-box>
+          <dx-button
+            text="Close"
+            (onClick)="closePopup()"
+            type="default">
+          </dx-button>
+        </div>
+      </dx-popup>
+    </div>
+  </section>
+  
+  <!-- Validation Section -->
+  <section id="validation-section" class="section">
+    <h2>Validation Component</h2>
+    <div class="demo-group">
+      <dx-validation-group #validationGroup (onInitialized)="onValidationGroupInit($event)">
+        <dx-text-box
+          id="name-input"
+          [(value)]="nameInputValue"
+          placeholder="Name (required)">
+          <dx-validator>
+            <dxi-validation-rule type="required" message="Name is required"></dxi-validation-rule>
+          </dx-validator>
+        </dx-text-box>
+        
+        <dx-text-box
+          id="email-input"
+          [(value)]="emailInputValue"
+          placeholder="Email (required, must be valid)">
+          <dx-validator>
+            <dxi-validation-rule type="required" message="Email is required"></dxi-validation-rule>
+            <dxi-validation-rule type="email" message="Email is invalid"></dxi-validation-rule>
+          </dx-validator>
+        </dx-text-box>
+        
+        <dx-button
+          id="submit-button"
+          text="Submit"
+          (onClick)="onSubmit()"
+          type="success">
+        </dx-button>
+      </dx-validation-group>
+    </div>
+  </section>
+</div>
+
