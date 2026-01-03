@@ -107,7 +107,7 @@ See the `tests/examples/` directory for comprehensive usage examples organized b
 
 ### Sample DevExtreme Angular App
 
-A sample Angular application with DevExtreme components is included in the `sample-app/` directory. This app demonstrates all the components that the helpers support:
+A sample Angular application with DevExtreme components is included in the `examples/sample-app/` directory. This app demonstrates all the components that the helpers support:
 
 - **Button**: Interactive buttons with disabled state (`#my-button`)
 - **Input/TextBox**: Text input fields (`#my-textbox`, `#name-input`, `#email-input`)
@@ -118,7 +118,7 @@ A sample Angular application with DevExtreme components is included in the `samp
 
 To run the sample app:
 ```bash
-cd sample-app
+cd examples/sample-app
 npm install
 npm start
 ```
@@ -127,15 +127,26 @@ The app will be available at `http://localhost:4200`
 
 ### Running Tests with Sample App
 
-The Playwright configuration is set up to automatically start the sample app. To run tests:
+The sample app has its own Playwright configuration. To run tests:
 
-1. Remove `.skip` from test functions in `tests/examples/*.spec.ts`
-2. Run tests: `npm test`
+**From the sample-app directory:**
+```bash
+cd examples/sample-app
+npm install
+npm run test:e2e
+```
+
+**From the project root:**
+```bash
+npm run test:sample
+```
 
 The tests will automatically:
 - Start the sample app server
 - Navigate to the app
 - Test all DevExtreme components using the helpers
+
+The sample app includes comprehensive test examples in `examples/sample-app/tests/examples/` that demonstrate usage of all helper functions.
 
 - `button.spec.ts` - Button component examples
 - `input.spec.ts` - Input/Editor component examples
