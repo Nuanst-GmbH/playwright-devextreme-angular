@@ -1,6 +1,8 @@
 # Dependencies
 node_modules/
-package-lock.json
+# package-lock.json - Keep this for CI/CD (npm ci requires it)
+# Libraries should commit package-lock.json for reproducible builds
+# but exclude it from published package via .npmignore
 yarn.lock
 pnpm-lock.yaml
 
