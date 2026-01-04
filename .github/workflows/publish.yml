@@ -38,6 +38,18 @@ jobs:
       - name: Build package
         run: npm run build
 
+      - name: Verify build output
+        run: |
+          if [ ! -f "dist/index.js" ]; then
+            echo "Error: dist/index.js not found after build"
+            exit 1
+          fi
+          if [ ! -f "dist/index.d.ts" ]; then
+            echo "Error: dist/index.d.ts not found after build"
+            exit 1
+          fi
+          echo "✓ Build verification passed"
+
       - name: Install sample-app dependencies
         run: |
           cd examples/sample-app
@@ -50,6 +62,8 @@ jobs:
 
       - name: Run tests
         run: npm test
+        env:
+          CI: true
         continue-on-error: true
 
       - name: Extract version from release tag (if triggered by release)
@@ -65,11 +79,12 @@ jobs:
       - name: Bump version (manual trigger only)
         if: github.event_name == 'workflow_dispatch' && inputs.version != ''
         run: |
-          if [[ "${{ inputs.version }}" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-            npm version ${{ inputs.version }} --no-git-tag-version
-          else
-            npm version ${{ inputs.version }} --no-git-tag-version
+          npm version ${{ inputs.version }} --no-git-tag-version
+          if [ $? -ne 0 ]; then
+            echo "Error: Failed to bump version to ${{ inputs.version }}"
+            exit 1
           fi
+          echo "✓ Version bumped successfully"
 
       - name: Verify version matches release tag (release trigger only)
         if: github.event_name == 'release'
@@ -84,6 +99,29 @@ jobs:
 
       - name: Publish to npm
         run: npm publish --access public
+
+      - name: Verify published package
+        run: |
+          PACKAGE_VERSION=$(node -p "require('./package.json').version")
+          PACKAGE_NAME=$(node -p "require('./package.json').name")
+          echo "Verifying package $PACKAGE_NAME@$PACKAGE_VERSION exists on npm..."
+          
+          # Wait a few seconds for npm registry to update
+          sleep 5
+          
+          # Check if package exists on npm
+          if npm view "$PACKAGE_NAME@$PACKAGE_VERSION" version > /dev/null 2>&1; then
+            PUBLISHED_VERSION=$(npm view "$PACKAGE_NAME@$PACKAGE_VERSION" version)
+            if [ "$PUBLISHED_VERSION" = "$PACKAGE_VERSION" ]; then
+              echo "✓ Package $PACKAGE_NAME@$PACKAGE_VERSION successfully published to npm"
+            else
+              echo "Error: Published version ($PUBLISHED_VERSION) does not match expected version ($PACKAGE_VERSION)"
+              exit 1
+            fi
+          else
+            echo "Error: Package $PACKAGE_NAME@$PACKAGE_VERSION not found on npm"
+            exit 1
+          fi
 
       - name: Commit version bump and create tag (manual trigger only)
         if: github.event_name == 'workflow_dispatch' && success() && inputs.version != ''
