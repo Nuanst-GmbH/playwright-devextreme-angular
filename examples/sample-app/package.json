@@ -30,7 +30,7 @@
     "@angular/cli": "^17.0.0",
     "@angular/compiler-cli": "^17.0.0",
     "@playwright/test": "^1.40.0",
-    "@playwright-devextreme/helpers": "file:../../",
+    "@nuanst-one/playwright-devextreme-angular": "file:../../",
     "@types/node": "^20.0.0",
     "typescript": "~5.2.0"
   }

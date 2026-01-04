@@ -1,12 +1,25 @@
-# @playwright-devextreme/helpers
+# @nuanst-one/playwright-devextreme-angular
 
 Playwright test helpers for DevExtreme Angular components with Shadow DOM support.
 
 ## Installation
 
 ```bash
-npm install --save-dev @playwright-devextreme/helpers
+npm install --save-dev @nuanst-one/playwright-devextreme-angular
 ```
+
+### Requirements
+
+- **Playwright**: `^1.40.0` or higher
+- **DevExtreme**: `>=20.0.0` (tested with `^23.2.0`)
+- **DevExtreme Angular**: `>=20.0.0` (tested with `^23.2.0`)
+
+**Note**: While the helpers may work with DevExtreme 20.0.0+, they are officially tested and supported with DevExtreme 23.2.0 and above. The helpers rely on:
+- Standard DevExtreme CSS classes (`.dx-*`, `.dx-state-*`)
+- ARIA attributes (`role="gridcell"`, `role="columnheader"`, `aria-describedby`)
+- Standard HTML structure patterns
+
+If you're using an older version of DevExtreme, some features may not work as expected.
 
 ### Local Development
 
@@ -16,7 +29,7 @@ If you're developing this package locally, you have a few options:
    ```bash
    npm link
    # In your test project:
-   npm link @playwright-devextreme/helpers
+   npm link @nuanst-one/playwright-devextreme-angular
    ```
 
 2. **Use relative imports in tests**:
@@ -46,7 +59,7 @@ import {
   clickDevExtremeButton,
   fillDevExtremeInput,
   waitForDevExtremeDataGridLoad 
-} from '@playwright-devextreme/helpers';
+} from '@nuanst-one/playwright-devextreme-angular';
 
 test('My test', async ({ page }) => {
   await fillDevExtremeInput(page, '#my-input', 'Hello');

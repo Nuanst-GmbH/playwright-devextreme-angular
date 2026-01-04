@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import {
   waitForDevExtremeComponent,
   isDevExtremeComponentInState,
-} from '@playwright-devextreme/helpers';
+} from '@nuanst-one/playwright-devextreme-angular';
 
 /**
  * Example tests for DevExtreme component state checking

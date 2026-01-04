@@ -1,5 +1,5 @@
 {
-  "name": "@playwright-devextreme/helpers",
+  "name": "@nuanst-one/playwright-devextreme-angular",
   "version": "1.0.0",
   "description": "Playwright test helpers for DevExtreme Angular components with Shadow DOM support",
   "main": "dist/index.js",
@@ -28,7 +28,9 @@
   "author": "",
   "license": "MIT",
   "peerDependencies": {
-    "@playwright/test": "^1.40.0"
+    "@playwright/test": "^1.40.0",
+    "devextreme": ">=20.0.0",
+    "devextreme-angular": ">=20.0.0"
   },
   "devDependencies": {
     "@playwright/test": "^1.40.0",

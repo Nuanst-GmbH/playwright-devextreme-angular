@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { DevExtremeSelectors } from '@playwright-devextreme/helpers';
+import { DevExtremeSelectors } from '@nuanst-one/playwright-devextreme-angular';
 
 /**
  * Example tests for using DevExtreme predefined selectors

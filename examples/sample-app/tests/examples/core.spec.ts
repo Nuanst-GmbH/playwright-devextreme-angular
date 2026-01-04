@@ -4,7 +4,7 @@ import {
   findInShadowDOM,
   waitForDevExtremeAsyncOperation,
   clickDevExtremeButton,
-} from '@playwright-devextreme/helpers';
+} from '@nuanst-one/playwright-devextreme-angular';
 
 /**
  * Example tests for DevExtreme core utilities

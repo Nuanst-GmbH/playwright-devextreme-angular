@@ -27,7 +27,7 @@ The app will be available at `http://localhost:4200`
 
 ## Running Playwright Tests
 
-This sample app includes Playwright tests in the `tests/` directory that demonstrate the usage of `@playwright-devextreme/helpers`.
+This sample app includes Playwright tests in the `tests/` directory that demonstrate the usage of `@nuanst-one/playwright-devextreme-angular`.
 
 ### Run Tests
 

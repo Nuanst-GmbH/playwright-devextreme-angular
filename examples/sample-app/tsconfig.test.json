@@ -5,7 +5,7 @@
     "outDir": "./dist-test",
     "noEmit": true,
     "paths": {
-      "@playwright-devextreme/helpers": ["../../src/index.ts"]
+      "@nuanst-one/playwright-devextreme-angular": ["../../src/index.ts"]
     }
   },
   "include": ["tests/**/*", "../../src/**/*"],

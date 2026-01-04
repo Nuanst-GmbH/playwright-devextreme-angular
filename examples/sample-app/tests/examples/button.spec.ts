@@ -3,7 +3,7 @@ import {
   waitForDevExtremeComponent,
   clickDevExtremeButton,
   isDevExtremeComponentInState,
-} from '@playwright-devextreme/helpers';
+} from '@nuanst-one/playwright-devextreme-angular';
 
 /**
  * Example tests for DevExtreme Button component
