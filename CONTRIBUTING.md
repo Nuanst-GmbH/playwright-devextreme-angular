@@ -22,6 +22,8 @@ Thank you for your interest in contributing! This document provides guidelines a
    ```bash
    npm install
    ```
+   
+   **Note**: The `package-lock.json` file is committed to the repository for CI/CD reproducibility. This ensures all PRs are tested with the same dependency versions. The lock file is excluded from the published npm package.
 
 3. **Build the package**:
    ```bash
