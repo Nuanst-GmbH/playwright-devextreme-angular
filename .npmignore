@@ -9,6 +9,8 @@ tests/
 .npmignore
 tsconfig.json
 package.json.example
+package-lock.json
+*.tsbuildinfo
 
 # Playwright
 test-results/

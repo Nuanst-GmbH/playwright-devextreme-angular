@@ -4,10 +4,17 @@
   "description": "Playwright test helpers for DevExtreme Angular components with Shadow DOM support",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
   "files": [
     "dist",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "NOTICE"
   ],
   "scripts": {
     "build": "tsc",
@@ -38,9 +45,21 @@
     "@types/node": "^20.0.0",
     "typescript": "^5.0.0"
   },
+  "homepage": "https://github.com/Nuanst-GmbH/playwright-devextreme-angular#readme",
+  "bugs": {
+    "url": "https://github.com/Nuanst-GmbH/playwright-devextreme-angular/issues"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/Nuanst-GmbH/playwright-devextreme-angular.git"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
   }
 }
 

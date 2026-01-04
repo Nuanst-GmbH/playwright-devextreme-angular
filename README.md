@@ -1,6 +1,13 @@
-# @nuanst-one/playwright-devextreme-angular
-
-Playwright test helpers for DevExtreme Angular components with Shadow DOM support.
+<div align="center">
+  <img src="https://avatars.githubusercontent.com/u/102481288?s=200&v=4" alt="@nuanst-one/playwright-devextreme-angular" width="120" />
+  
+  # @nuanst-one/playwright-devextreme-angular
+  
+  **Playwright test helpers for DevExtreme Angular components with Shadow DOM support**
+  
+  [![npm version](https://img.shields.io/npm/v/@nuanst-one/playwright-devextreme-angular.svg)](https://www.npmjs.com/package/@nuanst-one/playwright-devextreme-angular)
+  [![License](https://img.shields.io/npm/l/@nuanst-one/playwright-devextreme-angular.svg)](https://github.com/Nuanst-GmbH/playwright-devextreme-angular/blob/main/LICENSE)
+</div>
 
 ## Installation
 
