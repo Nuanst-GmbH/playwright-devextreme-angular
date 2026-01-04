@@ -35,6 +35,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Build package
+        run: npm run build
+
       - name: Install sample-app dependencies
         run: |
           cd examples/sample-app
@@ -43,9 +46,6 @@ jobs:
       - name: Run tests
         run: npm test
         continue-on-error: true
-
-      - name: Build package
-        run: npm run build
 
       - name: Extract version from release tag (if triggered by release)
         if: github.event_name == 'release'
