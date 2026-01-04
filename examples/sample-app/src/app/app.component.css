@@ -48,3 +48,9 @@ dx-data-grid {
   margin-top: 10px;
 }
 
+.form-actions {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #ddd;
+}
+
