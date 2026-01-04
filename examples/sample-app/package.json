@@ -1,6 +1,6 @@
 {
   "name": "devextreme-angular-sample",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Sample DevExtreme Angular app for testing Playwright helpers",
   "scripts": {
     "start": "ng serve --port 4200 --configuration development",
