@@ -21,28 +21,6 @@ npm install --save-dev @nuanst-one/playwright-devextreme-angular
 
 If you're using an older version of DevExtreme, some features may not work as expected.
 
-### Local Development
-
-If you're developing this package locally, you have a few options:
-
-1. **Use npm link** (recommended):
-   ```bash
-   npm link
-   # In your test project:
-   npm link @nuanst-one/playwright-devextreme-angular
-   ```
-
-2. **Use relative imports in tests**:
-   ```typescript
-   import { ... } from '../../src';
-   ```
-
-3. **Build and install locally**:
-   ```bash
-   npm run build
-   npm install ./dist
-   ```
-
 ## Features
 
 - ✅ Shadow DOM support for DevExtreme components
@@ -68,7 +46,7 @@ test('My test', async ({ page }) => {
 });
 ```
 
-## Documentation
+## API Documentation
 
 ### Core Utilities
 
@@ -116,62 +94,30 @@ Execute a DevExtreme component method via Angular component instance.
 
 ## Examples
 
-See the `tests/examples/` directory for comprehensive usage examples organized by component.
+For comprehensive usage examples, see the [GitHub repository](https://github.com/Nuanst-GmbH/playwright-devextreme-angular/tree/main/examples/sample-app/tests/examples). The examples demonstrate:
 
-### Sample DevExtreme Angular App
+- Button component interactions
+- Input/Editor component usage
+- Dropdown/SelectBox selection
+- DataGrid operations
+- Popup/Modal handling
+- Validation workflows
+- Component state checking
+- Core utilities (Shadow DOM, async operations)
 
-A sample Angular application with DevExtreme components is included in the `examples/sample-app/` directory. This app demonstrates all the components that the helpers support:
+## Reporting Issues
 
-- **Button**: Interactive buttons with disabled state (`#my-button`)
-- **Input/TextBox**: Text input fields (`#my-textbox`, `#name-input`, `#email-input`)
-- **Dropdown/SelectBox**: Dropdown selection (`#my-dropdown`)
-- **DataGrid**: Data table with multiple rows (`#my-datagrid`)
-- **Popup**: Modal popup dialog (triggered by `#open-popup-button`)
-- **Validation**: Form validation with validation groups
+If you find a bug or have a feature request, please open an issue on [GitHub](https://github.com/Nuanst-GmbH/playwright-devextreme-angular/issues) with:
 
-To run the sample app:
-```bash
-cd examples/sample-app
-npm install
-npm start
-```
+- A clear description of the problem or feature
+- Steps to reproduce (for bugs)
+- Expected vs actual behavior
+- Environment details (Node.js version, Playwright version, DevExtreme version, etc.)
 
-The app will be available at `http://localhost:4200`
+## Contributing
 
-### Running Tests with Sample App
-
-The sample app has its own Playwright configuration. To run tests:
-
-**From the sample-app directory:**
-```bash
-cd examples/sample-app
-npm install
-npm run test:e2e
-```
-
-**From the project root:**
-```bash
-npm run test:sample
-```
-
-The tests will automatically:
-- Start the sample app server
-- Navigate to the app
-- Test all DevExtreme components using the helpers
-
-The sample app includes comprehensive test examples in `examples/sample-app/tests/examples/` that demonstrate usage of all helper functions.
-
-- `button.spec.ts` - Button component examples
-- `input.spec.ts` - Input/Editor component examples
-- `dropdown.spec.ts` - Dropdown/SelectBox component examples
-- `datagrid.spec.ts` - DataGrid component examples
-- `popup.spec.ts` - Popup/Modal component examples
-- `validation.spec.ts` - Validation component examples
-- `state.spec.ts` - Component state checking examples
-- `core.spec.ts` - Core utilities (Shadow DOM, async operations) examples
-- `selectors.spec.ts` - Predefined selectors usage examples
+If you'd like to contribute to this project, please see [CONTRIBUTING.md](CONTRIBUTING.md) for development setup, testing guidelines, and contribution instructions.
 
 ## License
 
-MIT
-
+Apache-2.0

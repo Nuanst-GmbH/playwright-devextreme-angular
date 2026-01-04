@@ -19,7 +19,6 @@ playwright/
 .vscode/
 .idea/
 
-# Documentation
-README.md
+# Documentation (README.md and LICENSE should be included)
 tests/helpers/README.md
 
